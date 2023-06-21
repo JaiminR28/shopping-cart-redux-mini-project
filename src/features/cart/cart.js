@@ -1,34 +1,66 @@
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addAsync } from "./cartSlice";
-import "./Product.css";
-import { useEffect } from "react";
+import "./cart.css";
+// import { deleteAsync, updateAsync } from "./cartSlice";
 
-export function Items() {
-	// const count = useSelector(state);
-	const Items = useSelector((state) => state.cart.items);
+export function Cart() {
 	const dispatch = useDispatch();
-	useEffect(() => dispatch(addAsync()), []);
+	const items = useSelector((state) => state.cart.items);
+
+	// const handleChange = (e, id) => {
+	// 	console.log(e.target.value);
+	// 	dispatch(updateAsync({ id, change: { quantity: +e.target.value } }));
+	// };
+
 	return (
 		<div>
-			<div className="Items">
-				{Items.map((product) => {
-					return (
-						<div className="card" key={product.id}>
-							<img
-								src={product.thumbnail}
-								alt="Denim Jeans"
-								className="productImage"
-							/>
-							<h1>{product.name}</h1>
-							<p className="price">{`$${product.price}`}</p>
-							<p>{product.description}</p>
-							<p>
-								<button>Add to Cart</button>
-							</p>
+			<div>
+				{items.map((item) => (
+					<div className="cart-item" key={item.id}>
+						<img
+							className="img-fluid"
+							src={item.thumbnail}
+							alt=""
+						/>
+						<div className="description">
+							<p>{item.title}</p>
+							<span>{item.brand}</span>
+							<strong>${item.price}</strong>
 						</div>
-					);
-				})}
+						<div className="quantity">
+							Quantity
+							<select name="" id="">
+								<option value={1}>1</option>
+								<option value={2}>2</option>
+								<option value={3}>3</option>
+							</select>
+						</div>
+
+						<div className="close">
+							<button onClick={() => dispatch()}>X</button>
+						</div>
+					</div>
+				))}
 			</div>
+			<h1>
+				Total:
+				{items.reduce(
+					(acc, item) => item.price * item.quantity + acc,
+					0
+				)}
+			</h1>
 		</div>
 	);
 }
+
+// <div className="quantity">
+// 	Quantity
+// 	<select
+// 		value={item.quantity}
+// 		onChange={(e) => handleChange(e, item.id)}
+// 	>
+// 		<option value={1}>1</option>
+// 		<option value={2}>2</option>
+// 		<option value={3}>3</option>
+// 	</select>
+// </div>;

@@ -11,8 +11,13 @@ const initialState = {
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
-export const addAsync = createAsyncThunk("cart/fetchItem", async () => {
+export const fetchAsync = createAsyncThunk("cart/fetchItem", async () => {
 	const response = await cartItems();
+
+	return response.data;
+});
+export const addAsync = createAsyncThunk("cart/addItem", async (item) => {
+	const response = await addItem(item);
 	// The value we return becomes the `fulfilled` action payload
 	return response.data;
 });

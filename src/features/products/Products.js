@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchAsync } from "./productSlice";
 import "./Product.css";
 import { Fragment } from "react";
+import { addAsync } from "../cart/cartSlice";
 
 export function Products() {
 	// const count = useSelector(state);
@@ -39,7 +40,11 @@ export function Products() {
 							<p className="price">{`$${product.price}`}</p>
 							<p>{product.description}</p>
 							<p>
-								<button>Add to Cart</button>
+								<button
+									onClick={() => dispatch(addAsync(product))}
+								>
+									Add to Cart
+								</button>
 							</p>
 						</div>
 					);
