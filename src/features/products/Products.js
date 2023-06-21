@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAsync } from "./productSlice";
 import "./Product.css";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { addAsync } from "../cart/cartSlice";
 
 export function Products() {
@@ -9,11 +9,12 @@ export function Products() {
 	const products = useSelector((state) => state.product.products);
 	const status = useSelector((state) => state.product.status);
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchAsync());
+	}, []);
 	return (
 		<div>
-			<button onClick={() => dispatch(fetchAsync())}>
-				Fetch Products
-			</button>
 			{status === "loading" ? (
 				<div>
 					<div className="load-wrapp">
@@ -33,7 +34,7 @@ export function Products() {
 						<div className="card" key={product.id}>
 							<img
 								src={product.thumbnail}
-								alt="Denim Jeans"
+								alt={product.name}
 								className="productImage"
 							/>
 							<h1>{product.name}</h1>

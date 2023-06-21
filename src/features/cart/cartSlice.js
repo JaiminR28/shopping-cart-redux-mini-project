@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { cartItems, addItem, deleteItem, updateitem } from "./cartAPI";
+import { fetchItems, addItem, deleteItem, updateitem } from "./cartAPI";
 
 const initialState = {
 	items: [],
@@ -11,14 +11,21 @@ const initialState = {
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
-export const fetchAsync = createAsyncThunk("cart/fetchItem", async () => {
-	const response = await cartItems();
-
+export const fetchAsync = createAsyncThunk("cart/fetchItems", async () => {
+	const response = await fetchItems();
 	return response.data;
 });
+
 export const addAsync = createAsyncThunk("cart/addItem", async (item) => {
-	const response = await addItem(item);
-	// The value we return becomes the `fulfilled` action payload
+	const { id, title, brand, thumbnail, price } = item;
+	const response = await addItem({
+		id,
+		title,
+		brand,
+		thumbnail,
+		price,
+		quantity: 1,
+	});
 	return response.data;
 });
 
@@ -32,8 +39,12 @@ export const itemSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			// this also contains the action ans the
-			.addCase(addAsync.pending, (state) => {
+			.addCase(fetchAsync.pending, (state) => {
 				state.status = "loading";
+			})
+			.addCase(fetchAsync.fulfilled, (state, action) => {
+				state.status = "idle";
+				state.items = action.payload;
 			})
 			.addCase(addAsync.fulfilled, (state, action) => {
 				state.status = "idle";

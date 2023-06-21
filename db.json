@@ -555,19 +555,11 @@
   ],
   "cart": [
     {
-      "id": 30,
-      "title": "Key Holder",
-      "brand": "Golden",
-      "thumbnail": "https://i.dummyjson.com/data/products/30/thumbnail.jpg",
-      "price": 30,
-      "quantity": 1
-    },
-    {
-      "id": 29,
-      "title": "Handcraft Chinese style",
-      "brand": "luxury palace",
-      "thumbnail": "https://i.dummyjson.com/data/products/29/thumbnail.webp",
-      "price": 60,
+      "id": 3,
+      "title": "Samsung Universe 9",
+      "brand": "Samsung",
+      "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+      "price": 1249,
       "quantity": 1
     },
     {
@@ -576,6 +568,30 @@
       "brand": "Apple",
       "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
       "price": 899,
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "title": "OPPOF19",
+      "brand": "OPPO",
+      "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+      "price": 280,
+      "quantity": 1
+    },
+    {
+      "id": 8,
+      "title": "Microsoft Surface Laptop 4",
+      "brand": "Microsoft Surface",
+      "thumbnail": "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
+      "price": 1499,
+      "quantity": 1
+    },
+    {
+      "id": 7,
+      "title": "Samsung Galaxy Book",
+      "brand": "Samsung",
+      "thumbnail": "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
+      "price": 1499,
       "quantity": 1
     }
   ]

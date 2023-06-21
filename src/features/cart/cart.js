@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./cart.css";
+import { fetchAsync } from "./cartSlice";
 // import { deleteAsync, updateAsync } from "./cartSlice";
 
 export function Cart() {
 	const dispatch = useDispatch();
 	const items = useSelector((state) => state.cart.items);
-
+	console.log("Items: ", items);
 	// const handleChange = (e, id) => {
 	// 	console.log(e.target.value);
 	// 	dispatch(updateAsync({ id, change: { quantity: +e.target.value } }));
 	// };
+
+	useEffect(() => {
+		dispatch(fetchAsync());
+	}, []);
 
 	return (
 		<div>
