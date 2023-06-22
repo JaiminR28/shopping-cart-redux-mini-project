@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./cart.css";
-import { fetchAsync, deleteAsync } from "./cartSlice";
+import { fetchAsync, deleteAsync, updateAsync } from "./cartSlice";
 // import { deleteAsync, updateAsync } from "./cartSlice";
 
 export function Cart() {
@@ -16,8 +16,10 @@ export function Cart() {
 		dispatch(fetchAsync());
 	}, []);
 
-	const changeHandler = (e) => {
-		console.log(e.target.value);
+	const changeHandler = (id, e) => {
+		dispatch(
+			updateAsync({ id: id, change: { quantity: +e.target.value } })
+		);
 	};
 
 	return (
@@ -41,7 +43,7 @@ export function Cart() {
 								name=""
 								id=""
 								value={item.quantity}
-								onChange={changeHandler}
+								onChange={(e) => changeHandler(item.id, e)}
 							>
 								<option value={1}>1</option>
 								<option value={2}>2</option>

@@ -568,7 +568,9 @@
       "brand": "HP Pavilion",
       "thumbnail": "https://i.dummyjson.com/data/products/10/thumbnail.jpeg",
       "price": 1099,
-      "quantity": 1
+      "quantity": 2,
+      "requestId": "6xwlp582At6oYNLbpMpKg",
+      "signal": {}
     },
     {
       "id": 2,
@@ -576,7 +578,7 @@
       "brand": "Apple",
       "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
       "price": 899,
-      "quantity": 1
+      "quantity": 3
     }
   ]
 }

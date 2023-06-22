@@ -8,7 +8,6 @@ export function addItem(item) {
 	return axios.post("http://localhost:8000/cart", item);
 }
 export function updateItem(id, itemUpdate) {
-	console.log({ id, itemUpdate });
 	return axios.patch(`http://localhost:8000/cart/${id}`, itemUpdate);
 }
 export function deleteItem(id) {
