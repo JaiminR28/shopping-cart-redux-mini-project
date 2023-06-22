@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Products } from "./features/products/Products";
 import "./App.css";
 import { Cart } from "./features/cart/cart";
@@ -9,7 +9,6 @@ function App() {
 	const [showCart, setShowCart] = useState(false);
 	const items = useSelector((state) => state.cart.items.length);
 	const dispatch = useDispatch();
-	console.log(items);
 
 	useEffect(() => {
 		dispatch(fetchAsync());
@@ -18,7 +17,7 @@ function App() {
 	return (
 		<div className="App">
 			<button onClick={() => setShowCart(!showCart)}>
-				Cart [ {items.length} ]
+				Cart Items =&gt; [ {items} ]
 			</button>
 			{showCart ? <Cart></Cart> : <Products></Products>}
 		</div>

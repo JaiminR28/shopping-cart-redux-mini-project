@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./cart.css";
-import { fetchAsync } from "./cartSlice";
+import { fetchAsync, deleteAsync } from "./cartSlice";
 // import { deleteAsync, updateAsync } from "./cartSlice";
 
 export function Cart() {
 	const dispatch = useDispatch();
 	const items = useSelector((state) => state.cart.items);
-	console.log("Items: ", items);
 	// const handleChange = (e, id) => {
 	// 	console.log(e.target.value);
 	// 	dispatch(updateAsync({ id, change: { quantity: +e.target.value } }));
@@ -16,6 +15,10 @@ export function Cart() {
 	useEffect(() => {
 		dispatch(fetchAsync());
 	}, []);
+
+	const changeHandler = (e) => {
+		console.log(e.target.value);
+	};
 
 	return (
 		<div>
@@ -34,7 +37,12 @@ export function Cart() {
 						</div>
 						<div className="quantity">
 							Quantity
-							<select name="" id="">
+							<select
+								name=""
+								id=""
+								value={item.quantity}
+								onChange={changeHandler}
+							>
 								<option value={1}>1</option>
 								<option value={2}>2</option>
 								<option value={3}>3</option>
@@ -42,7 +50,11 @@ export function Cart() {
 						</div>
 
 						<div className="close">
-							<button onClick={() => dispatch()}>X</button>
+							<button
+								onClick={() => dispatch(deleteAsync(item.id))}
+							>
+								X
+							</button>
 						</div>
 					</div>
 				))}

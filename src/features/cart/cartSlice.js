@@ -29,6 +29,11 @@ export const addAsync = createAsyncThunk("cart/addItem", async (item) => {
 	return response.data;
 });
 
+export const deleteAsync = createAsyncThunk("cart/deleteItem", async (id) => {
+	const response = await deleteItem(id);
+	return response.data;
+});
+
 export const itemSlice = createSlice({
 	name: "items",
 	initialState,
@@ -49,6 +54,14 @@ export const itemSlice = createSlice({
 			.addCase(addAsync.fulfilled, (state, action) => {
 				state.status = "idle";
 				state.items.push(action.payload);
+			})
+			.addCase(deleteAsync.fulfilled, (state, action) => {
+				state.status = "idle";
+				// state.items.filter((item) => item.id !== action.payload);
+				const index = state.items.findIndex(
+					(item) => item.id === action.payload
+				);
+				state.items.splice(index, 1);
 			});
 	},
 });
